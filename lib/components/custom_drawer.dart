@@ -13,39 +13,40 @@ class _CustomDrawerState extends State<CustomDrawer> {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text("xyz"),
-              accountEmail: Text("xyz@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text("xyz"),
-              ),
-              otherAccountsPictures: <Widget>[
-                CircleAvatar(
+                accountName: Text("ice"),
+                accountEmail: Text("ice@ripple.mk"),
+                currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: Text("abc"),
-                )
-              ],
-            ),
+                  child: Text("ice"),
+                )),
             ListTile(
-              title: new Text("All Inboxes"),
-              leading: new Icon(Icons.mail),
+              title: new Text("Start test"),
+              leading: new Icon(Icons.hourglass_empty),
+              onTap: start,
             ),
             Divider(
               height: 0.1,
             ),
             ListTile(
-              title: new Text("Primary"),
-              leading: new Icon(Icons.inbox),
-            ),
-            ListTile(
-              title: new Text("Social"),
-              leading: new Icon(Icons.people),
-            ),
-            ListTile(
-              title: new Text("Promotions"),
-              leading: new Icon(Icons.local_offer),
+              title: new Text("Log out"),
+              leading: new Icon(Icons.exit_to_app),
+              onTap: logOut,
             )
           ],
         ));
+  }
+
+  logOut() {
+    Navigator.of(context).pop();
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (r) => r == null);
+  }
+
+  start() {
+    if (ModalRoute.of(context).settings.name.contains('/start')) {
+      Navigator.of(context).pop();
+      return;
+    }
+    Navigator.of(context).pop();
+    Navigator.of(context).pushNamed('/start');
   }
 }

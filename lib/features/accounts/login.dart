@@ -49,13 +49,16 @@ class _LoginState extends State<Login> {
                       Padding(padding: EdgeInsets.only(top: 20)),
                       CustomButton(
                           child: Text('Register'),
-                          onPressed: () =>
-                              Navigator.of(context).pushNamedAndRemoveUntil('/register', (r) => r == null),
+                          onPressed: () => Navigator.of(context)
+                              .pushNamedAndRemoveUntil(
+                                  '/register', (r) => r == null),
                           color: CustomColors.LightBlue)
                     ]))),
       ),
     );
   }
 
-  void submit() {}
+  void submit() {
+    Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
+  }
 }

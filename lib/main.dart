@@ -4,6 +4,7 @@ import 'package:ocean_mobile/features/accounts/login.dart';
 import 'package:ocean_mobile/features/accounts/register.dart';
 import 'package:ocean_mobile/features/test/questionnaire.dart';
 import 'package:ocean_mobile/features/test/result.dart';
+import 'package:ocean_mobile/features/test/start.dart';
 
 import 'custom_colors.dart';
 
@@ -27,14 +28,26 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: MaterialColor(CustomColors.Blue.value, getSwatch(CustomColors.Blue)),
-        accentColor: MaterialColor(CustomColors.Blue.value, getSwatch(CustomColors.Blue)),
-        fontFamily: 'SkolaSans'
+        primarySwatch: MaterialColor(
+            CustomColors.Blue.value, getSwatch(CustomColors.Blue)),
+        accentColor: MaterialColor(
+            CustomColors.Blue.value, getSwatch(CustomColors.Blue)),
+        fontFamily: 'SkolaSans',
+        textTheme: TextTheme(
+          body1: TextStyle(color: CustomColors.NotBlack),
+          button: TextStyle(fontSize: 16)
+        ),
+        sliderTheme: SliderThemeData(
+          trackHeight: 5,
+          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
+          thumbColor: CustomColors.Blue
+        )
       ),
       home: Login(),
       routes: {
         "/login": (bc) => new Login(),
         "/register": (bc) => new Register(),
+        "/start": (bc) => new StartTest(),
         "/questionnaire": (bc) => new Questionnaire(),
         "/result": (bc) => new Result()
       },
