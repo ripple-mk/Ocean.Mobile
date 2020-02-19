@@ -12,7 +12,7 @@ class CustomForm extends StatefulWidget {
 }
 
 class _CustomFormState extends State<CustomForm> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -25,13 +25,11 @@ class _CustomFormState extends State<CustomForm> {
 
   @override
   void dispose() {
-    isSubmitSet = false;
     HandleApiErrors.formCallback = null;
     super.dispose();
   }
 
   List<Widget> children = new List<Widget>();
-  bool isSubmitSet;
 
   void buildChildren() {
     children.clear();
@@ -41,7 +39,6 @@ class _CustomFormState extends State<CustomForm> {
       if (item is CustomTextField) {
         CustomTextField field = item;
         var node = FocusNode();
-        FocusNode lastNode = childrenFocus.length > 0 ? childrenFocus[0] : null;
         children.add(CustomTextField(
             action: field.action,
             fieldName: field.fieldName,
@@ -52,13 +49,22 @@ class _CustomFormState extends State<CustomForm> {
             keyboard: field.keyboard,
             onValueChanged: field.onValueChanged,
             editingComplete: (v) {
-              if (lastNode != null)
+              var nodeIndex = childrenFocus.indexOf(node);
+              FocusNode lastNode;
+              if (nodeIndex != -1 && nodeIndex < childrenFocus.length - 1)
+                lastNode = childrenFocus[nodeIndex + 1];
+              else
+                lastNode = null;
+
+              if (lastNode != null) {
                 FocusScope.of(node.context).requestFocus(lastNode);
-              else {
+              } else {
                 FocusScope.of(node.context).unfocus();
-                CustomButton btn =
-                    widget.children.firstWhere((x) => x is CustomButton && x.name == 'submit');
-                if (btn != null) btn.onPressed();
+                CustomButton btn = widget.children
+                    .firstWhere((x) => x is CustomButton && x.name == 'submit');
+                if (btn != null && btn.onPressed != null) {
+                  btn.onPressed();
+                }
               }
             },
             placeholder: field.placeholder));
@@ -67,13 +73,13 @@ class _CustomFormState extends State<CustomForm> {
         children.add(item);
     }
     children = children.reversed.toList();
+    childrenFocus = childrenFocus.reversed.toList();
   }
 
   List<FocusNode> childrenFocus = new List<FocusNode>();
 
   @override
   Widget build(BuildContext context) {
-    children.clear();
     buildChildren();
     return Form(
         autovalidate: true,

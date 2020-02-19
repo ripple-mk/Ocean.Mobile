@@ -3,7 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_button.dart';
 import 'package:ocean_mobile/components/custom_drawer.dart';
+import 'package:ocean_mobile/components/loading.dart';
 import 'package:ocean_mobile/custom_colors.dart';
+import 'package:ocean_mobile/models/question.dart';
+import 'package:ocean_mobile/services/questions_service.dart';
 
 class Questionnaire extends StatefulWidget {
   @override
@@ -11,19 +14,30 @@ class Questionnaire extends StatefulWidget {
 }
 
 class QuestionnaireState extends State<Questionnaire> {
-  int answerValue = 3;
-  String title = "Neutral";
-  double currentProgress() => questionCount / 3;
-  int questionCount = 1;
+  double currentProgress() =>
+      questions.length < 1 ? 0 : currentQuestionIndex / questions.length;
+  int currentQuestionIndex = 1;
+  Question currentQuestion;
+  final QuestionsService questionsService = new QuestionsService();
 
-  final questions = [
-    "I often forget to put  things back in their proper place.",
-    "I shirk my duties",
-    "I Have frequent mood swings"
-  ];
+  List<Question> questions = new List<Question>();
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    questions.clear();
+    questions = await questionsService.loadQuestions();
+    currentQuestion = questions.first;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (currentQuestion == null) return Loading();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
@@ -47,7 +61,7 @@ class QuestionnaireState extends State<Questionnaire> {
                               direction: Axis.horizontal,
                               crossAxisAlignment: WrapCrossAlignment.start,
                               children: <Widget>[
-                                Text(questionCount.toString(),
+                                Text(currentQuestionIndex.toString(),
                                     style: TextStyle(
                                         color: CustomColors.Blue,
                                         fontWeight: FontWeight.w900)),
@@ -64,8 +78,7 @@ class QuestionnaireState extends State<Questionnaire> {
                                 width: 54, height: 30),
                             Padding(
                                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: Text(
-                                    questions[questionCount - 1],
+                                child: Text(currentQuestion.text,
                                     style: TextStyle(
                                         color: CustomColors.NotBlack,
                                         fontSize: 24,
@@ -74,7 +87,7 @@ class QuestionnaireState extends State<Questionnaire> {
                       Padding(padding: EdgeInsets.only(top: 30)),
                       Container(
                         alignment: Alignment.center,
-                        child: Text(title,
+                        child: Text(currentQuestion.valueName(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: CustomColors.Blue,
@@ -93,86 +106,65 @@ class QuestionnaireState extends State<Questionnaire> {
                           max: 5.0,
                           onChanged: (val) {
                             setState(() {
-                              answerValue = val.round();
-                              updateTitle();
+                              currentQuestion.answerValue = val.round();
                             });
                           },
-                          value: answerValue.roundToDouble()),
+                          value: currentQuestion.answerValue.roundToDouble()),
                       Padding(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                            Expanded(
-                              child: CustomButton(
-                              color: Colors.white,
-                              textColor: CustomColors.Blue,
-                              borderColor: CustomColors.Blue,
-                              child: Text('Previous'),
-                              onPressed: previousQuestion,
-                            )),
-                      Padding(padding: EdgeInsets.only(left: 50)),
-                            questions.length != questionCount ? Expanded(
-                              child: CustomButton(
-                              color: Colors.white,
-                              textColor: CustomColors.Blue,
-                              borderColor: CustomColors.Blue,
-                              child: Text('Next'),
-                              onPressed: nextQuestion,
-                            ))
-                            :
-                            Expanded(
-                              child: CustomButton(
-                              child: Text('Complete'),
-                              onPressed: complete,
-                            ))
-                          ]),
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisSize: MainAxisSize.max,
+                              children: <Widget>[
+                                Expanded(
+                                    child: CustomButton(
+                                  color: Colors.white,
+                                  textColor: CustomColors.Blue,
+                                  borderColor: CustomColors.Blue,
+                                  child: Text('Previous'),
+                                  onPressed: previousQuestion,
+                                )),
+                                Padding(padding: EdgeInsets.only(left: 50)),
+                                questions.length != currentQuestionIndex
+                                    ? Expanded(
+                                        child: CustomButton(
+                                        color: Colors.white,
+                                        textColor: CustomColors.Blue,
+                                        borderColor: CustomColors.Blue,
+                                        child: Text('Next'),
+                                        onPressed: nextQuestion,
+                                      ))
+                                    : Expanded(
+                                        child: CustomButton(
+                                        child: Text('Complete'),
+                                        onPressed: complete,
+                                      ))
+                              ]),
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 0))
-                          
                     ])),
           ]),
     );
   }
 
-  void updateTitle() {
-    switch (answerValue) {
-      case 2:
-        title = "Slightly\ndisagree";
-        return;
-      case 3:
-        title = "Neutral";
-        return;
-      case 4:
-        title = "Slightly\nagree";
-        return;
-      case 5:
-        title = "Agree";
-        return;
-      default:
-        title = "Disagree";
-        return;
-    }
-  }
-
   void nextQuestion() {
-    if (questionCount == questions.length) return;
-    questionCount++;
+    var q = questionsService.nextQuestion(currentQuestion);
+    if (q == null) return;
     setState(() {
-      answerValue = 3;
-      updateTitle();
+      currentQuestionIndex++;
+      currentQuestion = q;
     });
   }
 
   void previousQuestion() {
-    if (questionCount == 1) return;
-    questionCount--;
+    var q = questionsService.previousQuestion(currentQuestion);
+    if (q == null) return;
     setState(() {
-      answerValue = 3;
-      updateTitle();
+      currentQuestionIndex--;
+      currentQuestion = q;
     });
   }
 
-  void complete() {
+  void complete() async {
+    var q = await questionsService.loadQuestions();
     Navigator.of(context).pushNamedAndRemoveUntil('/result', (r) => r == null);
   }
 }

@@ -66,7 +66,6 @@ Class | Method | HTTP request | Description
 *QuestionsApi* | [**apiQuestionsAnswerPost**](docs//QuestionsApi.md#apiquestionsanswerpost) | **POST** /api/Questions/Answer | 
 *QuestionsApi* | [**apiQuestionsMultipleAnswersPost**](docs//QuestionsApi.md#apiquestionsmultipleanswerspost) | **POST** /api/Questions/MultipleAnswers | 
 *ResultsApi* | [**apiResultsCompleteQuestionnairePost**](docs//ResultsApi.md#apiresultscompletequestionnairepost) | **POST** /api/Results/CompleteQuestionnaire | 
-*ResultsApi* | [**apiResultsContinueQuestionnaireGet**](docs//ResultsApi.md#apiresultscontinuequestionnaireget) | **GET** /api/Results/ContinueQuestionnaire | 
 *ResultsApi* | [**apiResultsGetResultGet**](docs//ResultsApi.md#apiresultsgetresultget) | **GET** /api/Results/GetResult | 
 *ResultsApi* | [**apiResultsStartQuestionnairePost**](docs//ResultsApi.md#apiresultsstartquestionnairepost) | **POST** /api/Results/StartQuestionnaire | 
 
@@ -88,8 +87,6 @@ Class | Method | HTTP request | Description
  - [RippleOceanServicesFeaturesQuestionsMultipleAnswersResponse](docs//RippleOceanServicesFeaturesQuestionsMultipleAnswersResponse.md)
  - [RippleOceanServicesFeaturesResultsCompleteRequest](docs//RippleOceanServicesFeaturesResultsCompleteRequest.md)
  - [RippleOceanServicesFeaturesResultsCompleteResponse](docs//RippleOceanServicesFeaturesResultsCompleteResponse.md)
- - [RippleOceanServicesFeaturesResultsContinueResponse](docs//RippleOceanServicesFeaturesResultsContinueResponse.md)
- - [RippleOceanServicesFeaturesResultsContinueResponseQuestion](docs//RippleOceanServicesFeaturesResultsContinueResponseQuestion.md)
  - [RippleOceanServicesFeaturesResultsGetResponse](docs//RippleOceanServicesFeaturesResultsGetResponse.md)
  - [RippleOceanServicesFeaturesResultsGetResponseItem](docs//RippleOceanServicesFeaturesResultsGetResponseItem.md)
  - [RippleOceanServicesFeaturesResultsStartResponse](docs//RippleOceanServicesFeaturesResultsStartResponse.md)

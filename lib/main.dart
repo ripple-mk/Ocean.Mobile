@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ocean_mobile/extensions/get_swatch.dart';
 import 'package:ocean_mobile/features/accounts/forgot_password.dart';
 import 'package:ocean_mobile/features/accounts/login.dart';
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
               trackHeight: 5,
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
               thumbColor: CustomColors.Blue)),
-      home: Login(),
+      home: MainPage(),
       routes: {
         "/login": (bc) => new Login(),
         "/register": (bc) => new Register(),
@@ -84,5 +85,38 @@ class MyApp extends StatelessWidget {
         "/resetpassword": (bc) => ResetPassword()
       },
     );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+
+  @override void initState() {
+    super.initState();
+    checkAuth();
+  }
+
+  void checkAuth() async {
+    FlutterSecureStorage().read(key: 'token')
+    .then((token) {
+      if(token == null){ 
+        Navigator.of(context).pushNamedAndRemoveUntil('/login', (r) => r == null);
+      }
+      else {
+        ApiClient.token = token;
+        Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body:  Center(child: CircularProgressIndicator()));
   }
 }

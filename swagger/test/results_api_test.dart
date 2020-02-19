@@ -12,11 +12,6 @@ void main() {
       // TODO
     });
 
-    //Future<RippleOceanServicesFeaturesResultsContinueResponse> apiResultsContinueQuestionnaireGet({ String resultId }) async 
-    test('test apiResultsContinueQuestionnaireGet', () async {
-      // TODO
-    });
-
     //Future<RippleOceanServicesFeaturesResultsGetResponse> apiResultsGetResultGet({ String resultId }) async 
     test('test apiResultsGetResultGet', () async {
       // TODO

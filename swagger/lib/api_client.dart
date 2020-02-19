@@ -14,11 +14,11 @@ class ApiClient {
 
   Map<String, String> _defaultHeaderMap = {};
   Map<String, Authentication> _authentications = {};
-
+  static String token;
   final _regList = RegExp(r'^List<(.*)>$');
   final _regMap = RegExp(r'^Map<String,(.*)>$');
 
-  ApiClient({this.basePath = "http://localhost"}) {
+  ApiClient({this.basePath = "http://ocean5.azurewebsites.net"}) {
     // Setup authentications (key: authentication name, value: authentication).
     _authentications['Bearer'] = ApiKeyAuth("header", "Authorization");
   }
@@ -68,10 +68,6 @@ class ApiClient {
           return RippleOceanServicesFeaturesResultsCompleteRequest.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsCompleteResponse':
           return RippleOceanServicesFeaturesResultsCompleteResponse.fromJson(value);
-        case 'RippleOceanServicesFeaturesResultsContinueResponse':
-          return RippleOceanServicesFeaturesResultsContinueResponse.fromJson(value);
-        case 'RippleOceanServicesFeaturesResultsContinueResponseQuestion':
-          return RippleOceanServicesFeaturesResultsContinueResponseQuestion.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsGetResponse':
           return RippleOceanServicesFeaturesResultsGetResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsGetResponseItem':
@@ -146,6 +142,8 @@ class ApiClient {
 
     headerParams.addAll(_defaultHeaderMap);
     headerParams['Content-Type'] = contentType;
+    if(token != null)
+      headerParams['Authorization'] = 'Bearer ' + token;
 
     if(body is MultipartRequest) {
       var request = MultipartRequest(method, Uri.parse(url));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_button.dart';
@@ -14,6 +15,7 @@ class ResetPassword extends StatefulWidget {
 class _ResetPasswordState extends State<ResetPassword> {
   RippleOceanServicesFeaturesAccountsResetPasswordRequest model =
       new RippleOceanServicesFeaturesAccountsResetPasswordRequest();
+  final storage = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               Padding(padding: EdgeInsets.only(top: 30)),
               CustomTextField(
                   fieldName: 'ResetCode',
-                  keyboard: TextInputType.emailAddress,
                   placeholder: "Reset password code",
                   initVal: () => model?.resetCode,
                   onValueChanged: (val) {
@@ -38,19 +39,19 @@ class _ResetPasswordState extends State<ResetPassword> {
               Padding(padding: EdgeInsets.only(top: 30)),
               CustomTextField(
                   fieldName: 'NewPassword',
-                  keyboard: TextInputType.text,
                   placeholder: "New Password",
-                  onValueChanged: (val) {}),
+                  initVal: () => model?.newPassword,
+                  onValueChanged: (val) => model.newPassword = val),
               Padding(padding: EdgeInsets.only(top: 30)),
               CustomTextField(
                   fieldName: 'ConfirmNewPassword',
-                  keyboard: TextInputType.emailAddress,
                   placeholder: "Confirm New Password",
-                  onValueChanged: (val) {}),
+                  initVal: () => model?.confirmNewPassword,
+                  onValueChanged: (val) => model.confirmNewPassword = val),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                   name: 'submit',
-                  child: Text('Set password'),
+                  child: Text('Set new password'),
                   onPressed: submit),
             ])),
       ),
@@ -62,6 +63,9 @@ class _ResetPasswordState extends State<ResetPassword> {
     var res = await api.apiAccountsResetPasswordPost(
         rippleOceanServicesFeaturesAccountsResetPasswordRequest: model);
     if (res != null) {
+      storage.write(key: 'token', value: res.token);
+      storage.write(key: 'accountId', value: res.userId);
+      storage.write(key: 'username', value: res.username);
       Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
     }
   }

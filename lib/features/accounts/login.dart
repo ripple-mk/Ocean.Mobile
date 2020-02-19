@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_button.dart';
@@ -15,6 +16,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   var model = RippleOceanServicesFeaturesAccountsLoginRequest();
+  final storage = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class _LoginState extends State<Login> {
                       setState(() => model.password = val)),
               Padding(padding: EdgeInsets.only(top: 20)),
               GestureDetector(
-                  child: Text('Forgot your password?', style: TextStyle(color: CustomColors.Blue)), onTap: () => Navigator.of(context).pushNamed('/forgotpassword')),
+                  child: Text('Forgot your password?', style: TextStyle(color: CustomColors.Blue, fontStyle: FontStyle.italic)), onTap: () => Navigator.of(context).pushNamed('/forgotpassword')),
               Padding(padding: EdgeInsets.only(top: 50)),
               CustomButton(
                   name: 'submit', child: Text('Login'), onPressed: submit),
@@ -71,7 +73,9 @@ class _LoginState extends State<Login> {
     var res = await api.apiAccountsLoginPost(
         rippleOceanServicesFeaturesAccountsLoginRequest: model);
     if (res != null) {
-      
+      storage.write(key: 'token', value: res.token);
+      storage.write(key: 'accountId', value: res.userId);
+      storage.write(key: 'username', value: res.username);
       Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
     }
   }

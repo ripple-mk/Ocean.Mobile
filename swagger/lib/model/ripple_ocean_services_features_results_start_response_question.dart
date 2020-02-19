@@ -5,17 +5,23 @@ class RippleOceanServicesFeaturesResultsStartResponseQuestion {
   String id = null;
   
   String text = null;
+  
+  int value = null;
+  
+  int position = null;
   RippleOceanServicesFeaturesResultsStartResponseQuestion();
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesResultsStartResponseQuestion[id=$id, text=$text, ]';
+    return 'RippleOceanServicesFeaturesResultsStartResponseQuestion[id=$id, text=$text, value=$value, position=$position, ]';
   }
 
   RippleOceanServicesFeaturesResultsStartResponseQuestion.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
     id = json['id'];
     text = json['text'];
+    value = json['value'];
+    position = json['position'];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,6 +29,10 @@ class RippleOceanServicesFeaturesResultsStartResponseQuestion {
     if (id != null)
       json['id'] = id;
       json['text'] = text;
+    if (value != null)
+      json['value'] = value;
+    if (position != null)
+      json['position'] = position;
     return json;
   }
 

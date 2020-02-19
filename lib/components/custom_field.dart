@@ -35,17 +35,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
   TextEditingController controller;
   @override
   void initState() {
-    controller = new TextEditingController(text: widget.initVal());
+    String initVal;
+    if(widget.initVal != null)
+      initVal = widget.initVal();
+    controller = new TextEditingController(text: initVal);
     super.initState();
     cb = (errors) {
       String err;
       if (errors != null && errors.containsKey(widget.fieldName))
         err = errors[widget.fieldName].toString();
 
-      setState(() {
         error = err;
-        field.validator(null);
-      });
     };
 
     HandleApiErrors.formCallbacks.add(cb);

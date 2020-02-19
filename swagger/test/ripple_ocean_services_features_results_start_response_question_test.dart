@@ -16,6 +16,16 @@ void main() {
       // TODO
     });
 
+    // int value (default value: null)
+    test('to test the property `value`', () async {
+      // TODO
+    });
+
+    // int position (default value: null)
+    test('to test the property `position`', () async {
+      // TODO
+    });
+
 
   });
 
