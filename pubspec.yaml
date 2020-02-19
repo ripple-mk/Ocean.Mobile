@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -25,8 +25,12 @@ dependencies:
 
   flutter_secure_storage: ^3.3.1
   flutter_svg: ^0.15.0
+  http: ^0.12.0
   share: ^0.6.3
   charts_flutter: ^0.8.1
+  openapi:
+    path:
+      'swagger'
 
 dev_dependencies:
   flutter_test:

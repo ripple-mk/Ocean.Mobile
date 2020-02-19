@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../custom_colors.dart';
 
-class CustomButton extends FlatButton {
-  CustomButton({Widget child, Function onPressed, Color color = CustomColors.Blue, Color textColor = Colors.white, Color borderColor = Colors.transparent, })
+class CustomButton extends RaisedButton {
+  final String name;
+  CustomButton({this.name, Widget child, Function onPressed, Color color = CustomColors.Blue, Color textColor = Colors.white, Color borderColor = Colors.transparent})
       : super(
             child: child,
             onPressed: onPressed,
