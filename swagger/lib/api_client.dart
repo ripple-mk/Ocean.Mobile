@@ -42,6 +42,8 @@ class ApiClient {
           return RippleOceanServicesFeaturesAccountsChangePasswordRequest.fromJson(value);
         case 'RippleOceanServicesFeaturesAccountsForgotPasswordRequest':
           return RippleOceanServicesFeaturesAccountsForgotPasswordRequest.fromJson(value);
+        case 'RippleOceanServicesFeaturesAccountsForgotPasswordResponse':
+          return RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesAccountsLoginRequest':
           return RippleOceanServicesFeaturesAccountsLoginRequest.fromJson(value);
         case 'RippleOceanServicesFeaturesAccountsLoginResponse':
@@ -52,6 +54,8 @@ class ApiClient {
           return RippleOceanServicesFeaturesAccountsRegisterResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesAccountsResetPasswordRequest':
           return RippleOceanServicesFeaturesAccountsResetPasswordRequest.fromJson(value);
+        case 'RippleOceanServicesFeaturesAccountsResetPasswordResponse':
+          return RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesQuestionsAnswerRequest':
           return RippleOceanServicesFeaturesQuestionsAnswerRequest.fromJson(value);
         case 'RippleOceanServicesFeaturesQuestionsAnswerResponse':

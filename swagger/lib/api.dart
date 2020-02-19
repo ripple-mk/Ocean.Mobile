@@ -19,11 +19,13 @@ part 'api/results_api.dart';
 
 part 'model/ripple_ocean_services_features_accounts_change_password_request.dart';
 part 'model/ripple_ocean_services_features_accounts_forgot_password_request.dart';
+part 'model/ripple_ocean_services_features_accounts_forgot_password_response.dart';
 part 'model/ripple_ocean_services_features_accounts_login_request.dart';
 part 'model/ripple_ocean_services_features_accounts_login_response.dart';
 part 'model/ripple_ocean_services_features_accounts_register_request.dart';
 part 'model/ripple_ocean_services_features_accounts_register_response.dart';
 part 'model/ripple_ocean_services_features_accounts_reset_password_request.dart';
+part 'model/ripple_ocean_services_features_accounts_reset_password_response.dart';
 part 'model/ripple_ocean_services_features_questions_answer_request.dart';
 part 'model/ripple_ocean_services_features_questions_answer_response.dart';
 part 'model/ripple_ocean_services_features_questions_multiple_answers_request.dart';

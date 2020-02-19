@@ -75,11 +75,13 @@ Class | Method | HTTP request | Description
 
  - [RippleOceanServicesFeaturesAccountsChangePasswordRequest](docs//RippleOceanServicesFeaturesAccountsChangePasswordRequest.md)
  - [RippleOceanServicesFeaturesAccountsForgotPasswordRequest](docs//RippleOceanServicesFeaturesAccountsForgotPasswordRequest.md)
+ - [RippleOceanServicesFeaturesAccountsForgotPasswordResponse](docs//RippleOceanServicesFeaturesAccountsForgotPasswordResponse.md)
  - [RippleOceanServicesFeaturesAccountsLoginRequest](docs//RippleOceanServicesFeaturesAccountsLoginRequest.md)
  - [RippleOceanServicesFeaturesAccountsLoginResponse](docs//RippleOceanServicesFeaturesAccountsLoginResponse.md)
  - [RippleOceanServicesFeaturesAccountsRegisterRequest](docs//RippleOceanServicesFeaturesAccountsRegisterRequest.md)
  - [RippleOceanServicesFeaturesAccountsRegisterResponse](docs//RippleOceanServicesFeaturesAccountsRegisterResponse.md)
  - [RippleOceanServicesFeaturesAccountsResetPasswordRequest](docs//RippleOceanServicesFeaturesAccountsResetPasswordRequest.md)
+ - [RippleOceanServicesFeaturesAccountsResetPasswordResponse](docs//RippleOceanServicesFeaturesAccountsResetPasswordResponse.md)
  - [RippleOceanServicesFeaturesQuestionsAnswerRequest](docs//RippleOceanServicesFeaturesQuestionsAnswerRequest.md)
  - [RippleOceanServicesFeaturesQuestionsAnswerResponse](docs//RippleOceanServicesFeaturesQuestionsAnswerResponse.md)
  - [RippleOceanServicesFeaturesQuestionsMultipleAnswersRequest](docs//RippleOceanServicesFeaturesQuestionsMultipleAnswersRequest.md)

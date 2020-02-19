@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiAccountsForgotPasswordPost**
-> Object apiAccountsForgotPasswordPost(rippleOceanServicesFeaturesAccountsForgotPasswordRequest)
+> RippleOceanServicesFeaturesAccountsForgotPasswordResponse apiAccountsForgotPasswordPost(rippleOceanServicesFeaturesAccountsForgotPasswordRequest)
 
 
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Object**](Object.md)
+[**RippleOceanServicesFeaturesAccountsForgotPasswordResponse**](RippleOceanServicesFeaturesAccountsForgotPasswordResponse.md)
 
 ### Authorization
 
@@ -181,7 +181,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiAccountsResetPasswordPost**
-> Object apiAccountsResetPasswordPost(rippleOceanServicesFeaturesAccountsResetPasswordRequest)
+> RippleOceanServicesFeaturesAccountsResetPasswordResponse apiAccountsResetPasswordPost(rippleOceanServicesFeaturesAccountsResetPasswordRequest)
 
 
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Object**](Object.md)
+[**RippleOceanServicesFeaturesAccountsResetPasswordResponse**](RippleOceanServicesFeaturesAccountsResetPasswordResponse.md)
 
 ### Authorization
 

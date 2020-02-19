@@ -106,12 +106,12 @@ class AccountsApi {
   /// 
   ///
   /// 
-  Future<Object> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async {
+  Future<RippleOceanServicesFeaturesAccountsForgotPasswordResponse> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async {
     Response response = await apiAccountsForgotPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsForgotPasswordRequest: rippleOceanServicesFeaturesAccountsForgotPasswordRequest );
     if(response.statusCode >= 400) {
       HandleApiErrors(response.statusCode, response.body); return null;
     } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Object') as Object;
+      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsForgotPasswordResponse') as RippleOceanServicesFeaturesAccountsForgotPasswordResponse;
     } else {
       return null;
     }
@@ -271,12 +271,12 @@ class AccountsApi {
   /// 
   ///
   /// 
-  Future<Object> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async {
+  Future<RippleOceanServicesFeaturesAccountsResetPasswordResponse> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async {
     Response response = await apiAccountsResetPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsResetPasswordRequest: rippleOceanServicesFeaturesAccountsResetPasswordRequest );
     if(response.statusCode >= 400) {
       HandleApiErrors(response.statusCode, response.body); return null;
     } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Object') as Object;
+      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsResetPasswordResponse') as RippleOceanServicesFeaturesAccountsResetPasswordResponse;
     } else {
       return null;
     }

@@ -12,7 +12,7 @@ void main() {
       // TODO
     });
 
-    //Future<Object> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async 
+    //Future<RippleOceanServicesFeaturesAccountsForgotPasswordResponse> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async 
     test('test apiAccountsForgotPasswordPost', () async {
       // TODO
     });
@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    //Future<Object> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async 
+    //Future<RippleOceanServicesFeaturesAccountsResetPasswordResponse> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async 
     test('test apiAccountsResetPasswordPost', () async {
       // TODO
     });
