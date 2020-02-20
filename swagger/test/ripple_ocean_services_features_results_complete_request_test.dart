@@ -11,6 +11,11 @@ void main() {
       // TODO
     });
 
+    // List<RippleOceanServicesFeaturesResultsCompleteRequestAnswer> answers (default value: [])
+    test('to test the property `answers`', () async {
+      // TODO
+    });
+
 
   });
 

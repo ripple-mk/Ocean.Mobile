@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_button.dart';
 import 'package:ocean_mobile/components/custom_field.dart';
+import 'package:openapi/api.dart';
 
 import '../../custom_colors.dart';
 
@@ -13,6 +15,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final registerFormKey = new GlobalKey();
+  RippleOceanServicesFeaturesAccountsRegisterRequest model = RippleOceanServicesFeaturesAccountsRegisterRequest();
+  final storage = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +35,25 @@ class _RegisterState extends State<Register> {
                           width: 180, height: 180),
                       Padding(padding: EdgeInsets.only(top: 30)),
                       CustomTextField(
-                          fieldName: 'emailAddress',
+                          fieldName: 'Email',
                           keyboard: TextInputType.emailAddress,
-                          placeholder: "Your email",
-                          onValueChanged: (val) {}),
+                          initVal: () => model?.email,
+                          placeholder: "Email address",
+                          onValueChanged: (val) => model.email = val),
                       Padding(padding: EdgeInsets.only(top: 30)),
                       CustomTextField(
-                          fieldName: 'password',
-                          keyboard: TextInputType.emailAddress,
+                          fieldName: 'Password',
                           placeholder: "Password",
-                          onValueChanged: (val) {}),
+                          isPassword: true,
+                          initVal: () => model?.password,
+                          onValueChanged: (val) => model.password = val),
+                          Padding(padding: EdgeInsets.only(top: 30)),
+                      CustomTextField(
+                          fieldName: 'ConfirmPassword',
+                          isPassword: true,
+                          initVal: () => model?.confirmPassword,
+                          placeholder: "Confirm Password",
+                          onValueChanged: (val) => model.confirmPassword = val),
                       Padding(padding: EdgeInsets.only(top: 50)),
                       CustomButton(child: Text('Register'), onPressed: submit),
                       Padding(padding: EdgeInsets.only(top: 20)),
@@ -58,5 +71,14 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void submit() {}
+  void submit() async {
+    var api = AccountsApi();
+    var res = await api.apiAccountsRegisterPost(rippleOceanServicesFeaturesAccountsRegisterRequest: model);
+    if (res != null) {
+      storage.write(key: 'token', value: res.token);
+      storage.write(key: 'accountId', value: res.userId);
+      storage.write(key: 'username', value: res.username);
+      Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
+    }
+  }
 }

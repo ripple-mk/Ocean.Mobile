@@ -15,6 +15,7 @@ class ApiClient {
   Map<String, String> _defaultHeaderMap = {};
   Map<String, Authentication> _authentications = {};
   static String token;
+
   final _regList = RegExp(r'^List<(.*)>$');
   final _regMap = RegExp(r'^Map<String,(.*)>$');
 
@@ -66,6 +67,8 @@ class ApiClient {
           return RippleOceanServicesFeaturesQuestionsMultipleAnswersResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsCompleteRequest':
           return RippleOceanServicesFeaturesResultsCompleteRequest.fromJson(value);
+        case 'RippleOceanServicesFeaturesResultsCompleteRequestAnswer':
+          return RippleOceanServicesFeaturesResultsCompleteRequestAnswer.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsCompleteResponse':
           return RippleOceanServicesFeaturesResultsCompleteResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsGetResponse':

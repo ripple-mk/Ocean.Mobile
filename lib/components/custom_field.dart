@@ -66,7 +66,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         },
         focusNode: widget.focusNode,
         onFieldSubmitted: widget.editingComplete,
-        initialValue: widget.initVal(),
+        initialValue: widget.initVal == null ? '' : widget.initVal(),
         decoration: InputDecoration(
             labelText: widget.placeholder,
             labelStyle: TextStyle(color: CustomColors.Blue),

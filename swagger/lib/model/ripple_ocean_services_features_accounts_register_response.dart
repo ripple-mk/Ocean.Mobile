@@ -2,23 +2,38 @@ part of openapi.api;
 
 class RippleOceanServicesFeaturesAccountsRegisterResponse {
   
-  String id = null;
+  String token = null;
+  
+  DateTime expiryDate = null;
+  
+  String username = null;
+  
+  String userId = null;
   RippleOceanServicesFeaturesAccountsRegisterResponse();
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesAccountsRegisterResponse[id=$id, ]';
+    return 'RippleOceanServicesFeaturesAccountsRegisterResponse[token=$token, expiryDate=$expiryDate, username=$username, userId=$userId, ]';
   }
 
   RippleOceanServicesFeaturesAccountsRegisterResponse.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    id = json['id'];
+    token = json['token'];
+    expiryDate = (json['expiryDate'] == null) ?
+      null :
+      DateTime.parse(json['expiryDate']);
+    username = json['username'];
+    userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
     Map <String, dynamic> json = {};
-    if (id != null)
-      json['id'] = id;
+      json['token'] = token;
+    if (expiryDate != null)
+      json['expiryDate'] = expiryDate == null ? null : expiryDate.toUtc().toIso8601String();
+      json['username'] = username;
+    if (userId != null)
+      json['userId'] = userId;
     return json;
   }
 

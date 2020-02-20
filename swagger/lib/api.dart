@@ -31,6 +31,7 @@ part 'model/ripple_ocean_services_features_questions_answer_response.dart';
 part 'model/ripple_ocean_services_features_questions_multiple_answers_request.dart';
 part 'model/ripple_ocean_services_features_questions_multiple_answers_response.dart';
 part 'model/ripple_ocean_services_features_results_complete_request.dart';
+part 'model/ripple_ocean_services_features_results_complete_request_answer.dart';
 part 'model/ripple_ocean_services_features_results_complete_response.dart';
 part 'model/ripple_ocean_services_features_results_get_response.dart';
 part 'model/ripple_ocean_services_features_results_get_response_item.dart';

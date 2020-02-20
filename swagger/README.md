@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
  - [RippleOceanServicesFeaturesQuestionsMultipleAnswersRequest](docs//RippleOceanServicesFeaturesQuestionsMultipleAnswersRequest.md)
  - [RippleOceanServicesFeaturesQuestionsMultipleAnswersResponse](docs//RippleOceanServicesFeaturesQuestionsMultipleAnswersResponse.md)
  - [RippleOceanServicesFeaturesResultsCompleteRequest](docs//RippleOceanServicesFeaturesResultsCompleteRequest.md)
+ - [RippleOceanServicesFeaturesResultsCompleteRequestAnswer](docs//RippleOceanServicesFeaturesResultsCompleteRequestAnswer.md)
  - [RippleOceanServicesFeaturesResultsCompleteResponse](docs//RippleOceanServicesFeaturesResultsCompleteResponse.md)
  - [RippleOceanServicesFeaturesResultsGetResponse](docs//RippleOceanServicesFeaturesResultsGetResponse.md)
  - [RippleOceanServicesFeaturesResultsGetResponseItem](docs//RippleOceanServicesFeaturesResultsGetResponseItem.md)

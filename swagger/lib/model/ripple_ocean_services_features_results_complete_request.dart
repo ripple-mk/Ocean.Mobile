@@ -3,22 +3,28 @@ part of openapi.api;
 class RippleOceanServicesFeaturesResultsCompleteRequest {
   
   String resultId = null;
+  
+  List<RippleOceanServicesFeaturesResultsCompleteRequestAnswer> answers = [];
   RippleOceanServicesFeaturesResultsCompleteRequest();
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesResultsCompleteRequest[resultId=$resultId, ]';
+    return 'RippleOceanServicesFeaturesResultsCompleteRequest[resultId=$resultId, answers=$answers, ]';
   }
 
   RippleOceanServicesFeaturesResultsCompleteRequest.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
     resultId = json['resultId'];
+    answers = (json['answers'] == null) ?
+      null :
+      RippleOceanServicesFeaturesResultsCompleteRequestAnswer.listFromJson(json['answers']);
   }
 
   Map<String, dynamic> toJson() {
     Map <String, dynamic> json = {};
     if (resultId != null)
       json['resultId'] = resultId;
+      json['answers'] = answers;
     return json;
   }
 
