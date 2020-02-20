@@ -185,6 +185,6 @@ class QuestionnaireState extends State<Questionnaire> {
     if (res == null) return;
 
     questionsService.reset();
-    Navigator.of(context).pushReplacementNamed('/result');
+    Navigator.of(context).pushReplacementNamed('/result', arguments: widget.resultId);
   }
 }
