@@ -75,6 +75,10 @@ class ApiClient {
           return RippleOceanServicesFeaturesResultsGetResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsGetResponseItem':
           return RippleOceanServicesFeaturesResultsGetResponseItem.fromJson(value);
+        case 'RippleOceanServicesFeaturesResultsListResponse':
+          return RippleOceanServicesFeaturesResultsListResponse.fromJson(value);
+        case 'RippleOceanServicesFeaturesResultsListResponseItem':
+          return RippleOceanServicesFeaturesResultsListResponseItem.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsStartResponse':
           return RippleOceanServicesFeaturesResultsStartResponse.fromJson(value);
         case 'RippleOceanServicesFeaturesResultsStartResponseQuestion':

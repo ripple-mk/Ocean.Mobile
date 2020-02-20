@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    //Future<RippleOceanServicesFeaturesResultsListResponse> apiResultsListGet() async 
+    test('test apiResultsListGet', () async {
+      // TODO
+    });
+
     //Future<RippleOceanServicesFeaturesResultsStartResponse> apiResultsStartQuestionnairePost() async 
     test('test apiResultsStartQuestionnairePost', () async {
       // TODO

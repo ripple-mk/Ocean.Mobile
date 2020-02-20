@@ -25,15 +25,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
         child: Column(
           children: <Widget>[
             Container(
-              color: Theme.of(context).accentColor,
-              child: ListTile(
-              contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                title: Text(name, style: TextStyle(color: Colors.white)),
-                subtitle: Text(email, style: TextStyle(color: Colors.white)))),
+                color: Theme.of(context).accentColor,
+                child: ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                    title: Text(name, style: TextStyle(color: Colors.white)),
+                    subtitle:
+                        Text(email, style: TextStyle(color: Colors.white)))),
             ListTile(
               title: new Text("Start test"),
               leading: new Icon(Icons.hourglass_empty),
               onTap: start,
+            ),
+            ListTile(
+              title: new Text("Results"),
+              leading: new Icon(Icons.list),
+              onTap: results,
             ),
             Divider(
               height: 0.1,
@@ -49,7 +55,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   void setData() async {
     var username = await storage.read(key: 'username');
-    if(username != null) {
+    if (username != null) {
       setState(() {
         name = username.substring(0, username.indexOf('@'));
         email = username;
@@ -66,11 +72,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   start() {
-    if (ModalRoute.of(context).settings.name.contains('/start')) {
-      Navigator.of(context).pop();
-      return;
-    }
     Navigator.of(context).pop();
+    if (ModalRoute.of(context).settings.name.contains('/start')) return;
     Navigator.of(context).pushNamed('/start');
+  }
+
+  results() {
+    Navigator.of(context).pop();
+    if (ModalRoute.of(context).settings.name.contains('/resultslist')) return;
+    Navigator.of(context).pushNamed('/resultslist');
   }
 }

@@ -7,6 +7,7 @@ import 'package:ocean_mobile/features/accounts/register.dart';
 import 'package:ocean_mobile/features/accounts/reset_password.dart';
 import 'package:ocean_mobile/features/test/questionnaire.dart';
 import 'package:ocean_mobile/features/test/result.dart';
+import 'package:ocean_mobile/features/test/results_list.dart';
 import 'package:ocean_mobile/features/test/start.dart';
 import 'package:openapi/api.dart';
 
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
         "/start": (bc) => new StartTest(),
         "/questionnaire": (bc) => new Questionnaire(ModalRoute.of(bc).settings.arguments),
         "/result": (bc) => new Result(ModalRoute.of(bc).settings.arguments),
+        "/resultslist": (bc) => new ResultsList(),
         "/forgotpassword": (bc) => ForgotPassword(),
         "/resetpassword": (bc) => ResetPassword()
       },

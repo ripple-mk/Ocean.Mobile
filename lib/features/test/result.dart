@@ -2,13 +2,15 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_drawer.dart';
+import 'package:ocean_mobile/components/loading.dart';
 import 'package:ocean_mobile/custom_colors.dart';
+import 'package:openapi/api.dart';
 
 class Result extends StatefulWidget {
   final String id;
 
   Result(this.id);
-  
+
   @override
   ResultState createState() => ResultState();
 }
@@ -17,84 +19,73 @@ class ResultState extends State<Result> {
   int selectedSlice = 1;
   int selectedBar = 1;
 
-  final double inactiveOpacity = 0.4;
+  final double inactiveOpacity = 0.3;
+
+  RippleOceanServicesFeaturesResultsGetResponse model;
 
   @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    var res = await ResultsApi().apiResultsGetResultGet(resultId: widget.id);
+    if (res == null) Navigator.of(context).pop();
+    setState(() {
+      model = res;
+    });
+  }
+
+  charts.Color getSliceColorForIndex(int index) {
+    return getChartColor(chartColors[index - 1].withOpacity(
+                    selectedSlice == index ? 1 : inactiveOpacity));
+  }
+
+  charts.Color getBarColorForIndex(int index) {
+    return getChartColor(chartColors[index - 1].withOpacity(
+                    selectedBar == index ? 1 : inactiveOpacity));
+  }
+
+  final chartColors = [
+    CustomColors.DarkerBlue,
+    CustomColors.DarkBlue,
+    CustomColors.Blue,
+    CustomColors.LightBlue,
+    CustomColors.LighterBlue
+  ];
+
+  
+  
+  @override
   Widget build(BuildContext context) {
+    if (model == null) return Loading();
     List<charts.Series<ChartItem, String>> pieSeriesList = [
       charts.Series<ChartItem, String>(
-          data: [
-            new ChartItem(
-                1,
-                20,
-                "Openness",
-                getChartColor(CustomColors.DarkerBlue.withOpacity(
-                    selectedSlice == 1 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                2,
-                20,
-                "Conscientiousness",
-                getChartColor(CustomColors.DarkBlue.withOpacity(
-                    selectedSlice == 2 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                3,
-                20,
-                "Extraversion",
-                getChartColor(CustomColors.Blue.withOpacity(
-                    selectedSlice == 3 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                4,
-                20,
-                "Agreeableness",
-                getChartColor(CustomColors.LightBlue.withOpacity(
-                    selectedSlice == 4 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                5,
-                20,
-                "Neuroticism",
-                getChartColor(CustomColors.LighterBlue.withOpacity(
-                    selectedSlice == 5 ? 1 : inactiveOpacity))),
-          ],
+          data: model.items.map((res) {
+            return ChartItem(
+              color: getSliceColorForIndex(model.items.indexOf(res) + 1),
+              id: model.items.indexOf(res) + 1,
+              name: res.name,
+              value: res.percent
+            );
+          }).toList(),
           id: 'first',
           domainFn: (val, _) => val.name,
           measureFn: (val, _) => val.value,
           colorFn: (val, _) => val.color)
     ];
-
+    
     List<charts.Series<ChartItem, String>> barSeriesList = [
       charts.Series<ChartItem, String>(
-          data: [
-            new ChartItem(
-                1,
-                20,
-                "O",
-                getChartColor(CustomColors.DarkerBlue.withOpacity(
-                    selectedBar == 1 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                2,
-                20,
-                "C",
-                getChartColor(CustomColors.DarkBlue.withOpacity(
-                    selectedBar == 2 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                3,
-                20,
-                "E",
-                getChartColor(
-                    CustomColors.Blue.withOpacity(selectedBar == 3 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                4,
-                20,
-                "A",
-                getChartColor(CustomColors.LightBlue.withOpacity(
-                    selectedBar == 4 ? 1 : inactiveOpacity))),
-            new ChartItem(
-                5,
-                20,
-                "N",
-                getChartColor(CustomColors.LighterBlue.withOpacity(
-                    selectedBar == 5 ? 1 : inactiveOpacity))),
-          ],
+          data: model.items.map((res) {
+            return ChartItem(
+              color: getBarColorForIndex(model.items.indexOf(res) + 1),
+              id: model.items.indexOf(res) + 1,
+              name: res.name,
+              value: res.value
+            );
+          }).toList(),
           id: 'second',
           domainFn: (val, _) => val.name.substring(0, 1),
           measureFn: (val, _) => val.value,
@@ -135,21 +126,35 @@ class ResultState extends State<Result> {
                           )),
                       Padding(padding: EdgeInsets.only(top: 30)),
                       Wrap(
-                        alignment: WrapAlignment.center,
-                        direction: Axis.horizontal,
-                        children: [
-                          Text(pieSeriesList[0].data.firstWhere((x) => x.id == selectedSlice).value.toString(),
-                            style: TextStyle(color: pieSeriesList[0].data.firstWhere((x) => x.id == selectedSlice).toColor(),
-                            fontWeight: FontWeight.w900,
-                            fontSize: 21
-                          )),
-                          Text('%      ' + pieSeriesList[0].data.firstWhere((x) => x.id == selectedSlice).name,
-                          style: TextStyle(
-                            color: CustomColors.Blue,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 18
-                          ))
-                        ]),
+                          alignment: WrapAlignment.center,
+                          direction: Axis.horizontal,
+                          children: [
+                            Text(
+                                pieSeriesList[0]
+                                    .data
+                                    .firstWhere((x) => x.id == selectedSlice)
+                                    .value
+                                    .toString(),
+                                style: TextStyle(
+                                    color: pieSeriesList[0]
+                                        .data
+                                        .firstWhere(
+                                            (x) => x.id == selectedSlice)
+                                        .toColor(),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 21)),
+                            Text(
+                                '%      ' +
+                                    pieSeriesList[0]
+                                        .data
+                                        .firstWhere(
+                                            (x) => x.id == selectedSlice)
+                                        .name,
+                                style: TextStyle(
+                                    color: CustomColors.Blue,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 18))
+                          ]),
                       Padding(padding: EdgeInsets.only(top: 30)),
                       Container(
                           constraints:
@@ -162,31 +167,43 @@ class ResultState extends State<Result> {
                             ],
                           )),
                       Padding(padding: EdgeInsets.only(top: 30)),
-                          Wrap(
-                        alignment: WrapAlignment.start,
-                        direction: Axis.horizontal,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Text(pieSeriesList[0].data.firstWhere((x) => x.id == selectedBar).name + ' - ',
-                          style: TextStyle(
-                            color: CustomColors.NotBlack,
-                            fontSize: 28
-                          )),
-                          Text(
-                            pieSeriesList[0].data.firstWhere((x) => x.id == selectedBar).value.toString() + '%',
-                            style: TextStyle(color: pieSeriesList[0].data.firstWhere((x) => x.id == selectedBar).toColor(),
-                            fontWeight: FontWeight.w900,
-                            fontSize: 24
-                          )),
-                        ]),
+                      Wrap(
+                          alignment: WrapAlignment.start,
+                          direction: Axis.horizontal,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Text(
+                                barSeriesList[0]
+                                        .data
+                                        .firstWhere((x) => x.id == selectedBar)
+                                        .name +
+                                    ' - ',
+                                style: TextStyle(
+                                    color: CustomColors.NotBlack,
+                                    fontSize: 28)),
+                            Text(
+                                barSeriesList[0]
+                                        .data
+                                        .firstWhere((x) => x.id == selectedBar)
+                                        .value
+                                        .toString() +
+                                    '%',
+                                style: TextStyle(
+                                    color: barSeriesList[0]
+                                        .data
+                                        .firstWhere((x) => x.id == selectedBar)
+                                        .toColor(),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 24)),
+                          ]),
                       Padding(padding: EdgeInsets.only(top: 30)),
                       Text(
-                          'This factor has been interpreted frequently as openness to experience, intellect, or culture. Traits commonly associated with this dimension include imagination, curiosity, originality, broad-mindedness, and intelligence. Openness results in tolerance for ambiguity, and artistic sensitivity. This dimension describes individual differences in tolerance for and attraction to the unfamiliar. It has been described as a trait influencing an individual’s breadth and complexity of mental experiences. High scorers are described as having wide interests, being imaginative, curious, creative, and insightful. They prefer complexity and change over familiar and stable situations. Low scorers are described as shallow, conventional, unanalytical, down-to-earth, and lacking in imagination. Openness is the most controversial of the Big Five, as there are many issues relating to its definition and measurement about which personality experts disagree. For example, measures of Openness are moderately associated with cognitive ability (i.e., intelligence) and particularly with divergent thinking. One conceptualization of this dimension includes facets such as openness to ideas, actions, values, feelings, aesthetics, and fantasy. Other conceptualizations suggest facets of complexity, culture, creativity/innovativeness, curiosity, intellect, and having a preference for change and variety.',
+                          model.items[selectedBar - 1].description,
                           style: TextStyle(
-                            height: 1.6,
-                            color: CustomColors.NotBlack,
-                            fontSize: 16
-                          ))
+                              height: 1.6,
+                              color: CustomColors.NotBlack,
+                              fontSize: 16)),
+                      Padding(padding: EdgeInsets.only(top: 30))
                     ]))));
   }
 
@@ -229,5 +246,5 @@ class ChartItem {
     return Color.fromARGB(color.a, color.r, color.g, color.b);
   }
 
-  ChartItem(this.id, this.value, this.name, this.color);
+  ChartItem({this.id, this.value, this.name, this.color});
 }

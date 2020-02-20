@@ -123,6 +123,61 @@ class ResultsApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> apiResultsListGetWithHttpInfo() async {
+    Object postBody;
+
+    // verify required params are set
+
+    // create path and map variables
+    String path = "/api/Results/List".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = [];
+
+    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<RippleOceanServicesFeaturesResultsListResponse> apiResultsListGet() async {
+    Response response = await apiResultsListGetWithHttpInfo();
+    if(response.statusCode >= 400) {
+      HandleApiErrors(response.statusCode, response.body); return null;
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesResultsListResponse') as RippleOceanServicesFeaturesResultsListResponse;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> apiResultsStartQuestionnairePostWithHttpInfo() async {
     Object postBody;
 

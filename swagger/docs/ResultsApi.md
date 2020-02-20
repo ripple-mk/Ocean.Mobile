@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiResultsCompleteQuestionnairePost**](ResultsApi.md#apiResultsCompleteQuestionnairePost) | **POST** /api/Results/CompleteQuestionnaire | 
 [**apiResultsGetResultGet**](ResultsApi.md#apiResultsGetResultGet) | **GET** /api/Results/GetResult | 
+[**apiResultsListGet**](ResultsApi.md#apiResultsListGet) | **GET** /api/Results/List | 
 [**apiResultsStartQuestionnairePost**](ResultsApi.md#apiResultsStartQuestionnairePost) | **POST** /api/Results/StartQuestionnaire | 
 
 
@@ -84,6 +85,43 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RippleOceanServicesFeaturesResultsGetResponse**](RippleOceanServicesFeaturesResultsGetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiResultsListGet**
+> RippleOceanServicesFeaturesResultsListResponse apiResultsListGet()
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = ResultsApi();
+
+try { 
+    var result = api_instance.apiResultsListGet();
+    print(result);
+} catch (e) {
+    print("Exception when calling ResultsApi->apiResultsListGet: $e\n");
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**RippleOceanServicesFeaturesResultsListResponse**](RippleOceanServicesFeaturesResultsListResponse.md)
 
 ### Authorization
 
