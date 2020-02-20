@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:ocean_mobile/custom_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -23,6 +24,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return Drawer(
         elevation: 16.0,
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Container(
                 color: Theme.of(context).accentColor,
@@ -48,6 +50,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
               title: new Text("Log out"),
               leading: new Icon(Icons.exit_to_app),
               onTap: logOut,
+            ),
+            Expanded(
+              child: Align(
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    direction: Axis.vertical,
+                    children: [
+                    Text('Powered by',
+                    textAlign: TextAlign.center),
+                    Padding(padding: EdgeInsets.only(bottom: 15)),
+                    GestureDetector(
+                        onTap: () async {
+                          if(await canLaunch('http://ripple.mk'))
+                            launch('http://ripple.mk');
+                        },
+                        child: SvgPicture.asset(
+                            'assets/images/ripple_logo_blk.svg',
+                            height: 50)),
+                    Padding(padding: EdgeInsets.only(bottom: 30))
+                  ]),
+                  alignment: Alignment.bottomCenter),
             )
           ],
         ));
