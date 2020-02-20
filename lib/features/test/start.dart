@@ -56,8 +56,7 @@ class _StartTestState extends State<StartTest> {
     if (res != null) {
       await questionsService
           .setQuestions(res.questions.map((q) => Question(q.id, q.text, q.value, q.position)).toList());
-      await storage.write(key: 'resultId', value: res.id);
-      Navigator.of(context).pushNamed('/questionnaire');
+      Navigator.of(context).pushNamed('/questionnaire', arguments: res.id);
     }
   }
 }

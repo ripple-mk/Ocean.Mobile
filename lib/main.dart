@@ -79,8 +79,8 @@ class MyApp extends StatelessWidget {
         "/login": (bc) => new Login(),
         "/register": (bc) => new Register(),
         "/start": (bc) => new StartTest(),
-        "/questionnaire": (bc) => new Questionnaire(),
-        "/result": (bc) => new Result(),
+        "/questionnaire": (bc) => new Questionnaire(ModalRoute.of(bc).settings.arguments),
+        "/result": (bc) => new Result(ModalRoute.of(bc).settings.arguments),
         "/forgotpassword": (bc) => ForgotPassword(),
         "/resetpassword": (bc) => ResetPassword()
       },

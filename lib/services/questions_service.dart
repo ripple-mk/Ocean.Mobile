@@ -23,7 +23,9 @@ class QuestionsService {
     return await storage.delete(key: storageKey);
   }
 
-  Future setQuestions(List<Question> questions) async {
+  Future setQuestions(List<Question> questions, {bool force = false}) async {
+    var currentQuestions = await loadQuestions();
+    if (currentQuestions.isNotEmpty && force == false) return;
     var json = jsonEncode(questions);
     if (json == null) return;
 
@@ -41,14 +43,19 @@ class QuestionsService {
     return questionsList;
   }
 
-  Question nextQuestion(Question currentQuestion) {
-    if (questions.indexOf(currentQuestion) == questions.length - 1) return null;
-    return questions.elementAt(questions.indexOf(currentQuestion) + 1);
+  Future<Question> nextQuestion(Question currentQuestion) async {
+    var currentIndex = questions.indexWhere((x) => x.id == currentQuestion.id);
+    questions[currentIndex].answerValue = currentQuestion.answerValue;
+    await setQuestions(questions, force: true);
+    if (currentIndex == questions.length - 1) return null;
+    return questions.elementAt(currentIndex + 1);
   }
 
-  Question previousQuestion(Question currentQuestion) {
-    if (questions.indexOf(currentQuestion) == 0) return null;
-    return questions.elementAt(questions.indexOf(currentQuestion) - 1);
+  Future<Question> previousQuestion(Question currentQuestion) async {
+    var currentIndex = questions.indexWhere((x) => x.id == currentQuestion.id);
+    questions[currentIndex].answerValue = currentQuestion.answerValue;
+    await setQuestions(questions, force: true);
+    if (currentIndex == 0) return null;
+    return questions.elementAt(currentIndex - 1);
   }
 }
-

@@ -5,6 +5,10 @@ import 'package:ocean_mobile/components/custom_drawer.dart';
 import 'package:ocean_mobile/custom_colors.dart';
 
 class Result extends StatefulWidget {
+  final String id;
+
+  Result(this.id);
+  
   @override
   ResultState createState() => ResultState();
 }

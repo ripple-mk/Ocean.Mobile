@@ -7,8 +7,12 @@ import 'package:ocean_mobile/components/loading.dart';
 import 'package:ocean_mobile/custom_colors.dart';
 import 'package:ocean_mobile/models/question.dart';
 import 'package:ocean_mobile/services/questions_service.dart';
+import 'package:openapi/api.dart';
 
 class Questionnaire extends StatefulWidget {
+  final String resultId;
+  Questionnaire(this.resultId);
+
   @override
   QuestionnaireState createState() => QuestionnaireState();
 }
@@ -121,7 +125,9 @@ class QuestionnaireState extends State<Questionnaire> {
                                   textColor: CustomColors.Blue,
                                   borderColor: CustomColors.Blue,
                                   child: Text('Previous'),
-                                  onPressed: previousQuestion,
+                                  onPressed: currentQuestionIndex == 1
+                                      ? null
+                                      : previousQuestion,
                                 )),
                                 Padding(padding: EdgeInsets.only(left: 50)),
                                 questions.length != currentQuestionIndex
@@ -145,8 +151,8 @@ class QuestionnaireState extends State<Questionnaire> {
     );
   }
 
-  void nextQuestion() {
-    var q = questionsService.nextQuestion(currentQuestion);
+  void nextQuestion() async {
+    var q = await questionsService.nextQuestion(currentQuestion);
     if (q == null) return;
     setState(() {
       currentQuestionIndex++;
@@ -154,8 +160,8 @@ class QuestionnaireState extends State<Questionnaire> {
     });
   }
 
-  void previousQuestion() {
-    var q = questionsService.previousQuestion(currentQuestion);
+  void previousQuestion() async {
+    var q = await questionsService.previousQuestion(currentQuestion);
     if (q == null) return;
     setState(() {
       currentQuestionIndex--;
@@ -164,7 +170,21 @@ class QuestionnaireState extends State<Questionnaire> {
   }
 
   void complete() async {
-    var q = await questionsService.loadQuestions();
-    Navigator.of(context).pushNamedAndRemoveUntil('/result', (r) => r == null);
+    var answers = await questionsService.loadQuestions();
+    var api = ResultsApi();
+    var model = RippleOceanServicesFeaturesResultsCompleteRequest();
+    model.resultId = widget.resultId;
+    model.answers = answers.map((a) {
+      var answer = RippleOceanServicesFeaturesResultsCompleteRequestAnswer();
+      answer.questionId = a.id;
+      answer.value = a.answerValue;
+      return answer;
+    }).toList();
+    var res = await api.apiResultsCompleteQuestionnairePost(
+        rippleOceanServicesFeaturesResultsCompleteRequest: model);
+    if (res == null) return;
+
+    questionsService.reset();
+    Navigator.of(context).pushReplacementNamed('/result');
   }
 }
