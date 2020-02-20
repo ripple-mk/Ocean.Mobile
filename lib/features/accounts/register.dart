@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ocean_mobile/components/custom_appbar.dart';
 import 'package:ocean_mobile/components/custom_button.dart';
 import 'package:ocean_mobile/components/custom_field.dart';
+import 'package:ocean_mobile/components/custom_form.dart';
 import 'package:openapi/api.dart';
 
 import '../../custom_colors.dart';
@@ -14,7 +15,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final registerFormKey = new GlobalKey();
   RippleOceanServicesFeaturesAccountsRegisterRequest model = RippleOceanServicesFeaturesAccountsRegisterRequest();
   final storage = new FlutterSecureStorage();
 
@@ -26,11 +26,8 @@ class _RegisterState extends State<Register> {
       body: SingleChildScrollView(
         child: Padding(
             padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-            child: Form(
-                key: registerFormKey,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
+            child: CustomForm(
+                children: <Widget>[
                       SvgPicture.asset('assets/images/artwork.svg',
                           width: 180, height: 180),
                       Padding(padding: EdgeInsets.only(top: 30)),
@@ -66,7 +63,7 @@ class _RegisterState extends State<Register> {
                           onPressed: () =>
                               Navigator.of(context).pushNamedAndRemoveUntil('/login', (r) => r == null),
                           color: CustomColors.LightBlue)
-                    ]))),
+                    ])),
       ),
     );
   }
@@ -78,6 +75,7 @@ class _RegisterState extends State<Register> {
       storage.write(key: 'token', value: res.token);
       storage.write(key: 'accountId', value: res.userId);
       storage.write(key: 'username', value: res.username);
+      ApiClient.token = res.token;
       Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
     }
   }

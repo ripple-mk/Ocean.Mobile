@@ -18,6 +18,13 @@ class _StartTestState extends State<StartTest> {
   final QuestionsService questionsService = new QuestionsService();
   final FlutterSecureStorage storage = new FlutterSecureStorage();
 
+  @override void initState() {
+    storage.read(key: 'token').then((token) {
+      ApiClient.token = token;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

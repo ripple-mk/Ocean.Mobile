@@ -76,6 +76,7 @@ class _LoginState extends State<Login> {
       storage.write(key: 'token', value: res.token);
       storage.write(key: 'accountId', value: res.userId);
       storage.write(key: 'username', value: res.username);
+      ApiClient.token = res.token;
       Navigator.of(context).pushNamedAndRemoveUntil('/start', (r) => r == null);
     }
   }

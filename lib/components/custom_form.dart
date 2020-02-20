@@ -12,7 +12,7 @@ class CustomForm extends StatefulWidget {
 }
 
 class _CustomFormState extends State<CustomForm> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -21,12 +21,6 @@ class _CustomFormState extends State<CustomForm> {
     HandleApiErrors.formCallback = (errors) {
       formKey.currentState.validate();
     };
-  }
-
-  @override
-  void dispose() {
-    HandleApiErrors.formCallback = null;
-    super.dispose();
   }
 
   List<Widget> children = new List<Widget>();
