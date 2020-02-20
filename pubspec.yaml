@@ -99,6 +99,6 @@ flutter:
         - asset: assets/fonts/SkolaSans-RegularItalic.otf
 
 flutter_icons:
-  android: true
+  android: false
   ios: true
   image_path: "assets/images/logo1024.png"
