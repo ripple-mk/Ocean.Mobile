@@ -11,11 +11,9 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final TextInputType keyboard;
   final TextInputAction action;
-  final GlobalKey<FormState> formKey;
   final FocusNode focusNode;
   CustomTextField(
-      {this.formKey,
-      this.focusNode,
+      {this.focusNode,
       this.placeholder,
       this.initVal,
       this.editingComplete,
@@ -36,8 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   void initState() {
     String initVal;
-    if(widget.initVal != null)
-      initVal = widget.initVal();
+    if (widget.initVal != null) initVal = widget.initVal();
     controller = new TextEditingController(text: initVal);
     super.initState();
     cb = (errors) {
@@ -45,7 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       if (errors != null && errors.containsKey(widget.fieldName))
         err = errors[widget.fieldName].toString();
 
-        error = err;
+      error = err;
     };
 
     HandleApiErrors.formCallbacks.add(cb);

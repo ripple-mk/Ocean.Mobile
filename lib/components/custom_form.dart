@@ -5,21 +5,23 @@ import 'package:openapi/api.dart';
 
 class CustomForm extends StatefulWidget {
   final List<Widget> children;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   CustomForm({this.children});
 
   @override
-  _CustomFormState createState() => _CustomFormState();
+  _CustomFormState createState() {
+    return _CustomFormState();
+  }
 }
 
 class _CustomFormState extends State<CustomForm> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
 
     HandleApiErrors.formCallback = (errors) {
-      formKey.currentState.validate();
+      if (widget.formKey?.currentState != null) widget.formKey.currentState.validate();
     };
   }
 
@@ -37,7 +39,6 @@ class _CustomFormState extends State<CustomForm> {
             action: field.action,
             fieldName: field.fieldName,
             initVal: field.initVal,
-            formKey: formKey,
             focusNode: node,
             isPassword: field.isPassword,
             keyboard: field.keyboard,
@@ -77,7 +78,7 @@ class _CustomFormState extends State<CustomForm> {
     buildChildren();
     return Form(
         autovalidate: true,
-        key: formKey,
+        key: widget.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: children,

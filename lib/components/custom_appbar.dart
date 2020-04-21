@@ -23,11 +23,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: Scaffold.of(context).hasDrawer ?  FlatButton(child: SvgPicture.asset('assets/images/waves.svg', height: 15, width: 15),
+      onPressed: () { Scaffold.of(context).openDrawer(); }) : null,
         title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
+                alignment: Alignment.center,
                   child: SvgPicture.asset(
                       'assets/images/logo.svg'),
                       height: 30)
