@@ -1,48 +1,49 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: true,
+  explicitToJson: true,
+)
 class RippleOceanServicesFeaturesAccountsForgotPasswordResponse {
-  
-  bool success = null;
-  RippleOceanServicesFeaturesAccountsForgotPasswordResponse();
+  /// Returns a new [RippleOceanServicesFeaturesAccountsForgotPasswordResponse] instance.
+  RippleOceanServicesFeaturesAccountsForgotPasswordResponse({
+    this.success,
+  });
+
+  @JsonKey(
+    nullable: false,
+    name: r'success',
+    required: false,
+  )
+  bool success;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is RippleOceanServicesFeaturesAccountsForgotPasswordResponse &&
+     other.success == success;
+
+  @override
+  int get hashCode =>
+    (success == null ? 0 : success.hashCode);
+
+  factory RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(Map<String, dynamic> json) => _$RippleOceanServicesFeaturesAccountsForgotPasswordResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RippleOceanServicesFeaturesAccountsForgotPasswordResponseToJson(this);
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesAccountsForgotPasswordResponse[success=$success, ]';
+    return toJson().toString();
   }
 
-  RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    success = json['success'];
-  }
-
-  Map<String, dynamic> toJson() {
-    Map <String, dynamic> json = {};
-    if (success != null)
-      json['success'] = success;
-    return json;
-  }
-
-  static List<RippleOceanServicesFeaturesAccountsForgotPasswordResponse> listFromJson(List<dynamic> json) {
-    return json == null ? List<RippleOceanServicesFeaturesAccountsForgotPasswordResponse>() : json.map((value) => RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, RippleOceanServicesFeaturesAccountsForgotPasswordResponse> mapFromJson(Map<String, dynamic> json) {
-    var map = Map<String, RippleOceanServicesFeaturesAccountsForgotPasswordResponse>();
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic value) => map[key] = RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of RippleOceanServicesFeaturesAccountsForgotPasswordResponse-objects as value to a dart map
-  static Map<String, List<RippleOceanServicesFeaturesAccountsForgotPasswordResponse>> mapListFromJson(Map<String, dynamic> json) {
-    var map = Map<String, List<RippleOceanServicesFeaturesAccountsForgotPasswordResponse>>();
-     if (json != null && json.isNotEmpty) {
-       json.forEach((String key, dynamic value) {
-         map[key] = RippleOceanServicesFeaturesAccountsForgotPasswordResponse.listFromJson(value);
-       });
-     }
-     return map;
-  }
 }
 

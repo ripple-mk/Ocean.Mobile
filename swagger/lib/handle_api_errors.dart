@@ -9,8 +9,7 @@ class HandleApiErrors {
     var errors = getErrorMessagesList(json);
     if (callback != null) callback(errors);
   }
-  static List<Function(Map<String, String> errors)> formCallbacks =
-      new List<Function(Map<String, String> errors)>();
+  static List<Function(Map<String, String> errors)> formCallbacks = [];
   static Function(Map<String, String> errors) formCallback;
 
   Map<String, String> getErrorMessagesList(Map<String, Object> json) {

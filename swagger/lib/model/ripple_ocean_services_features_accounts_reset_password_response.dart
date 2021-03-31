@@ -1,63 +1,79 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: true,
+  explicitToJson: true,
+)
 class RippleOceanServicesFeaturesAccountsResetPasswordResponse {
-  
-  String token = null;
-  
-  DateTime expiryDate = null;
-  
-  String username = null;
-  
-  String userId = null;
-  RippleOceanServicesFeaturesAccountsResetPasswordResponse();
+  /// Returns a new [RippleOceanServicesFeaturesAccountsResetPasswordResponse] instance.
+  RippleOceanServicesFeaturesAccountsResetPasswordResponse({
+    this.token,
+    this.expiryDate,
+    this.username,
+    this.userId,
+  });
+
+  @JsonKey(
+    nullable: true,
+    name: r'token',
+    required: false,
+  )
+  String token;
+
+  @JsonKey(
+    nullable: false,
+    name: r'expiryDate',
+    required: false,
+  )
+  DateTime expiryDate;
+
+  @JsonKey(
+    nullable: true,
+    name: r'username',
+    required: false,
+  )
+  String username;
+
+  @JsonKey(
+    nullable: false,
+    name: r'userId',
+    required: false,
+  )
+  String userId;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is RippleOceanServicesFeaturesAccountsResetPasswordResponse &&
+     other.token == token &&
+     other.expiryDate == expiryDate &&
+     other.username == username &&
+     other.userId == userId;
+
+  @override
+  int get hashCode =>
+    (token == null ? 0 : token.hashCode) +
+    (expiryDate == null ? 0 : expiryDate.hashCode) +
+    (username == null ? 0 : username.hashCode) +
+    (userId == null ? 0 : userId.hashCode);
+
+  factory RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(Map<String, dynamic> json) => _$RippleOceanServicesFeaturesAccountsResetPasswordResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RippleOceanServicesFeaturesAccountsResetPasswordResponseToJson(this);
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesAccountsResetPasswordResponse[token=$token, expiryDate=$expiryDate, username=$username, userId=$userId, ]';
+    return toJson().toString();
   }
 
-  RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    token = json['token'];
-    expiryDate = (json['expiryDate'] == null) ?
-      null :
-      DateTime.parse(json['expiryDate']);
-    username = json['username'];
-    userId = json['userId'];
-  }
-
-  Map<String, dynamic> toJson() {
-    Map <String, dynamic> json = {};
-      json['token'] = token;
-    if (expiryDate != null)
-      json['expiryDate'] = expiryDate == null ? null : expiryDate.toUtc().toIso8601String();
-      json['username'] = username;
-    if (userId != null)
-      json['userId'] = userId;
-    return json;
-  }
-
-  static List<RippleOceanServicesFeaturesAccountsResetPasswordResponse> listFromJson(List<dynamic> json) {
-    return json == null ? List<RippleOceanServicesFeaturesAccountsResetPasswordResponse>() : json.map((value) => RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(value)).toList();
-  }
-
-  static Map<String, RippleOceanServicesFeaturesAccountsResetPasswordResponse> mapFromJson(Map<String, dynamic> json) {
-    var map = Map<String, RippleOceanServicesFeaturesAccountsResetPasswordResponse>();
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic value) => map[key] = RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of RippleOceanServicesFeaturesAccountsResetPasswordResponse-objects as value to a dart map
-  static Map<String, List<RippleOceanServicesFeaturesAccountsResetPasswordResponse>> mapListFromJson(Map<String, dynamic> json) {
-    var map = Map<String, List<RippleOceanServicesFeaturesAccountsResetPasswordResponse>>();
-     if (json != null && json.isNotEmpty) {
-       json.forEach((String key, dynamic value) {
-         map[key] = RippleOceanServicesFeaturesAccountsResetPasswordResponse.listFromJson(value);
-       });
-     }
-     return map;
-  }
 }
 

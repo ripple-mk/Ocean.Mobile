@@ -1,285 +1,322 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 
-
 class AccountsApi {
-  final ApiClient apiClient;
-
   AccountsApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  ///  with HTTP info returned
+  final ApiClient apiClient;
+
+  /// Performs an HTTP 'POST /api/Accounts/ChangePassword' operation and returns the [Response].
+  /// Parameters:
   ///
-  /// 
+  /// * [RippleOceanServicesFeaturesAccountsChangePasswordRequest] rippleOceanServicesFeaturesAccountsChangePasswordRequest:
   Future<Response> apiAccountsChangePasswordPostWithHttpInfo({ RippleOceanServicesFeaturesAccountsChangePasswordRequest rippleOceanServicesFeaturesAccountsChangePasswordRequest }) async {
+    // Verify required params are set.
+
+    final path = r'/api/Accounts/ChangePassword';
+
     Object postBody = rippleOceanServicesFeaturesAccountsChangePasswordRequest;
 
-    // verify required params are set
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/api/Accounts/ChangePassword".replaceAll("{format}","json");
+    final contentTypes = <String>['application/json', 'text/json', 'application/_*+json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json","text/json","application/_*+json"];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
       bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
         postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<Object> apiAccountsChangePasswordPost({ RippleOceanServicesFeaturesAccountsChangePasswordRequest rippleOceanServicesFeaturesAccountsChangePasswordRequest }) async {
-    Response response = await apiAccountsChangePasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsChangePasswordRequest: rippleOceanServicesFeaturesAccountsChangePasswordRequest );
-    if(response.statusCode >= 400) {
-      HandleApiErrors(response.statusCode, response.body); return null;
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Object') as Object;
+      }
     } else {
-      return null;
     }
+
+    return await apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
   }
 
-  ///  with HTTP info returned
+  /// Parameters:
   ///
-  /// 
+  /// * [RippleOceanServicesFeaturesAccountsChangePasswordRequest] rippleOceanServicesFeaturesAccountsChangePasswordRequest:
+  Future<Object> apiAccountsChangePasswordPost({ RippleOceanServicesFeaturesAccountsChangePasswordRequest rippleOceanServicesFeaturesAccountsChangePasswordRequest }) async {
+    final response = await apiAccountsChangePasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsChangePasswordRequest: rippleOceanServicesFeaturesAccountsChangePasswordRequest );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+
+      return Object.fromJson(json.decode(response.body));
+    }
+    return Future<Object>.value(null);
+  }
+
+  /// Performs an HTTP 'POST /api/Accounts/ForgotPassword' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [RippleOceanServicesFeaturesAccountsForgotPasswordRequest] rippleOceanServicesFeaturesAccountsForgotPasswordRequest:
   Future<Response> apiAccountsForgotPasswordPostWithHttpInfo({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async {
+    // Verify required params are set.
+
+    final path = r'/api/Accounts/ForgotPassword';
+
     Object postBody = rippleOceanServicesFeaturesAccountsForgotPasswordRequest;
 
-    // verify required params are set
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/api/Accounts/ForgotPassword".replaceAll("{format}","json");
+    final contentTypes = <String>['application/json', 'text/json', 'application/_*+json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json","text/json","application/_*+json"];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
       bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
         postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<RippleOceanServicesFeaturesAccountsForgotPasswordResponse> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async {
-    Response response = await apiAccountsForgotPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsForgotPasswordRequest: rippleOceanServicesFeaturesAccountsForgotPasswordRequest );
-    if(response.statusCode >= 400) {
-      HandleApiErrors(response.statusCode, response.body); return null;
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsForgotPasswordResponse') as RippleOceanServicesFeaturesAccountsForgotPasswordResponse;
+      }
     } else {
-      return null;
     }
+
+    return await apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
   }
 
-  ///  with HTTP info returned
+  /// Parameters:
   ///
-  /// 
+  /// * [RippleOceanServicesFeaturesAccountsForgotPasswordRequest] rippleOceanServicesFeaturesAccountsForgotPasswordRequest:
+  Future<RippleOceanServicesFeaturesAccountsForgotPasswordResponse> apiAccountsForgotPasswordPost({ RippleOceanServicesFeaturesAccountsForgotPasswordRequest rippleOceanServicesFeaturesAccountsForgotPasswordRequest }) async {
+    final response = await apiAccountsForgotPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsForgotPasswordRequest: rippleOceanServicesFeaturesAccountsForgotPasswordRequest );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+
+      return RippleOceanServicesFeaturesAccountsForgotPasswordResponse.fromJson(json.decode(response.body));
+    }
+    return Future<RippleOceanServicesFeaturesAccountsForgotPasswordResponse>.value(null);
+  }
+
+  /// Performs an HTTP 'POST /api/Accounts/Login' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [RippleOceanServicesFeaturesAccountsLoginRequest] rippleOceanServicesFeaturesAccountsLoginRequest:
   Future<Response> apiAccountsLoginPostWithHttpInfo({ RippleOceanServicesFeaturesAccountsLoginRequest rippleOceanServicesFeaturesAccountsLoginRequest }) async {
+    // Verify required params are set.
+
+    final path = r'/api/Accounts/Login';
+
     Object postBody = rippleOceanServicesFeaturesAccountsLoginRequest;
 
-    // verify required params are set
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/api/Accounts/Login".replaceAll("{format}","json");
+    final contentTypes = <String>['application/json', 'text/json', 'application/_*+json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json","text/json","application/_*+json"];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
       bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
         postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<RippleOceanServicesFeaturesAccountsLoginResponse> apiAccountsLoginPost({ RippleOceanServicesFeaturesAccountsLoginRequest rippleOceanServicesFeaturesAccountsLoginRequest }) async {
-    Response response = await apiAccountsLoginPostWithHttpInfo( rippleOceanServicesFeaturesAccountsLoginRequest: rippleOceanServicesFeaturesAccountsLoginRequest );
-    if(response.statusCode >= 400) {
-      HandleApiErrors(response.statusCode, response.body); return null;
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsLoginResponse') as RippleOceanServicesFeaturesAccountsLoginResponse;
+      }
     } else {
-      return null;
     }
+
+    return await apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
   }
 
-  ///  with HTTP info returned
+  /// Parameters:
   ///
-  /// 
+  /// * [RippleOceanServicesFeaturesAccountsLoginRequest] rippleOceanServicesFeaturesAccountsLoginRequest:
+  Future<RippleOceanServicesFeaturesAccountsLoginResponse> apiAccountsLoginPost({ RippleOceanServicesFeaturesAccountsLoginRequest rippleOceanServicesFeaturesAccountsLoginRequest }) async {
+    final response = await apiAccountsLoginPostWithHttpInfo( rippleOceanServicesFeaturesAccountsLoginRequest: rippleOceanServicesFeaturesAccountsLoginRequest );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+
+      return RippleOceanServicesFeaturesAccountsLoginResponse.fromJson(json.decode(response.body));
+    }
+    return Future<RippleOceanServicesFeaturesAccountsLoginResponse>.value(null);
+  }
+
+  /// Performs an HTTP 'POST /api/Accounts/Register' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [RippleOceanServicesFeaturesAccountsRegisterRequest] rippleOceanServicesFeaturesAccountsRegisterRequest:
   Future<Response> apiAccountsRegisterPostWithHttpInfo({ RippleOceanServicesFeaturesAccountsRegisterRequest rippleOceanServicesFeaturesAccountsRegisterRequest }) async {
+    // Verify required params are set.
+
+    final path = r'/api/Accounts/Register';
+
     Object postBody = rippleOceanServicesFeaturesAccountsRegisterRequest;
 
-    // verify required params are set
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/api/Accounts/Register".replaceAll("{format}","json");
+    final contentTypes = <String>['application/json', 'text/json', 'application/_*+json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json","text/json","application/_*+json"];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
       bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
         postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<RippleOceanServicesFeaturesAccountsRegisterResponse> apiAccountsRegisterPost({ RippleOceanServicesFeaturesAccountsRegisterRequest rippleOceanServicesFeaturesAccountsRegisterRequest }) async {
-    Response response = await apiAccountsRegisterPostWithHttpInfo( rippleOceanServicesFeaturesAccountsRegisterRequest: rippleOceanServicesFeaturesAccountsRegisterRequest );
-    if(response.statusCode >= 400) {
-      HandleApiErrors(response.statusCode, response.body); return null;
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsRegisterResponse') as RippleOceanServicesFeaturesAccountsRegisterResponse;
+      }
     } else {
-      return null;
     }
+
+    return await apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
   }
 
-  ///  with HTTP info returned
+  /// Parameters:
   ///
-  /// 
+  /// * [RippleOceanServicesFeaturesAccountsRegisterRequest] rippleOceanServicesFeaturesAccountsRegisterRequest:
+  Future<RippleOceanServicesFeaturesAccountsRegisterResponse> apiAccountsRegisterPost({ RippleOceanServicesFeaturesAccountsRegisterRequest rippleOceanServicesFeaturesAccountsRegisterRequest }) async {
+    final response = await apiAccountsRegisterPostWithHttpInfo( rippleOceanServicesFeaturesAccountsRegisterRequest: rippleOceanServicesFeaturesAccountsRegisterRequest );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+
+      return RippleOceanServicesFeaturesAccountsRegisterResponse.fromJson(json.decode(response.body));
+    }
+    return Future<RippleOceanServicesFeaturesAccountsRegisterResponse>.value(null);
+  }
+
+  /// Performs an HTTP 'POST /api/Accounts/ResetPassword' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [RippleOceanServicesFeaturesAccountsResetPasswordRequest] rippleOceanServicesFeaturesAccountsResetPasswordRequest:
   Future<Response> apiAccountsResetPasswordPostWithHttpInfo({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async {
+    // Verify required params are set.
+
+    final path = r'/api/Accounts/ResetPassword';
+
     Object postBody = rippleOceanServicesFeaturesAccountsResetPasswordRequest;
 
-    // verify required params are set
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/api/Accounts/ResetPassword".replaceAll("{format}","json");
+    final contentTypes = <String>['application/json', 'text/json', 'application/_*+json'];
+    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    final authNames = <String>[];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json","text/json","application/_*+json"];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
+    if (
+      nullableContentType != null &&
+      nullableContentType.toLowerCase().startsWith('multipart/form-data')
+    ) {
       bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
+      final mp = MultipartRequest(null, null);
+      if (hasFields) {
         postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<RippleOceanServicesFeaturesAccountsResetPasswordResponse> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async {
-    Response response = await apiAccountsResetPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsResetPasswordRequest: rippleOceanServicesFeaturesAccountsResetPasswordRequest );
-    if(response.statusCode >= 400) {
-      HandleApiErrors(response.statusCode, response.body); return null;
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'RippleOceanServicesFeaturesAccountsResetPasswordResponse') as RippleOceanServicesFeaturesAccountsResetPasswordResponse;
+      }
     } else {
-      return null;
     }
+
+    return await apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      nullableContentType,
+      authNames,
+    );
   }
 
+  /// Parameters:
+  ///
+  /// * [RippleOceanServicesFeaturesAccountsResetPasswordRequest] rippleOceanServicesFeaturesAccountsResetPasswordRequest:
+  Future<RippleOceanServicesFeaturesAccountsResetPasswordResponse> apiAccountsResetPasswordPost({ RippleOceanServicesFeaturesAccountsResetPasswordRequest rippleOceanServicesFeaturesAccountsResetPasswordRequest }) async {
+    final response = await apiAccountsResetPasswordPostWithHttpInfo( rippleOceanServicesFeaturesAccountsResetPasswordRequest: rippleOceanServicesFeaturesAccountsResetPasswordRequest );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+
+      return RippleOceanServicesFeaturesAccountsResetPasswordResponse.fromJson(json.decode(response.body));
+    }
+    return Future<RippleOceanServicesFeaturesAccountsResetPasswordResponse>.value(null);
+  }
 }

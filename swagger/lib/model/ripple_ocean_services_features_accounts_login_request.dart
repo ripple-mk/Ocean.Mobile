@@ -1,51 +1,59 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: true,
+  explicitToJson: true,
+)
 class RippleOceanServicesFeaturesAccountsLoginRequest {
-  
-  String emailAddress = null;
-  
-  String password = null;
-  RippleOceanServicesFeaturesAccountsLoginRequest();
+  /// Returns a new [RippleOceanServicesFeaturesAccountsLoginRequest] instance.
+  RippleOceanServicesFeaturesAccountsLoginRequest({
+    this.emailAddress,
+    this.password,
+  });
+
+  @JsonKey(
+    nullable: true,
+    name: r'emailAddress',
+    required: false,
+  )
+  String emailAddress;
+
+  @JsonKey(
+    nullable: true,
+    name: r'password',
+    required: false,
+  )
+  String password;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is RippleOceanServicesFeaturesAccountsLoginRequest &&
+     other.emailAddress == emailAddress &&
+     other.password == password;
+
+  @override
+  int get hashCode =>
+    (emailAddress == null ? 0 : emailAddress.hashCode) +
+    (password == null ? 0 : password.hashCode);
+
+  factory RippleOceanServicesFeaturesAccountsLoginRequest.fromJson(Map<String, dynamic> json) => _$RippleOceanServicesFeaturesAccountsLoginRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RippleOceanServicesFeaturesAccountsLoginRequestToJson(this);
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesAccountsLoginRequest[emailAddress=$emailAddress, password=$password, ]';
+    return toJson().toString();
   }
 
-  RippleOceanServicesFeaturesAccountsLoginRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    emailAddress = json['emailAddress'];
-    password = json['password'];
-  }
-
-  Map<String, dynamic> toJson() {
-    Map <String, dynamic> json = {};
-      json['emailAddress'] = emailAddress;
-      json['password'] = password;
-    return json;
-  }
-
-  static List<RippleOceanServicesFeaturesAccountsLoginRequest> listFromJson(List<dynamic> json) {
-    return json == null ? List<RippleOceanServicesFeaturesAccountsLoginRequest>() : json.map((value) => RippleOceanServicesFeaturesAccountsLoginRequest.fromJson(value)).toList();
-  }
-
-  static Map<String, RippleOceanServicesFeaturesAccountsLoginRequest> mapFromJson(Map<String, dynamic> json) {
-    var map = Map<String, RippleOceanServicesFeaturesAccountsLoginRequest>();
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic value) => map[key] = RippleOceanServicesFeaturesAccountsLoginRequest.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of RippleOceanServicesFeaturesAccountsLoginRequest-objects as value to a dart map
-  static Map<String, List<RippleOceanServicesFeaturesAccountsLoginRequest>> mapListFromJson(Map<String, dynamic> json) {
-    var map = Map<String, List<RippleOceanServicesFeaturesAccountsLoginRequest>>();
-     if (json != null && json.isNotEmpty) {
-       json.forEach((String key, dynamic value) {
-         map[key] = RippleOceanServicesFeaturesAccountsLoginRequest.listFromJson(value);
-       });
-     }
-     return map;
-  }
 }
 

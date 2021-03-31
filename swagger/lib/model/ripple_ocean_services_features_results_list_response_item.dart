@@ -1,52 +1,59 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: true,
+  explicitToJson: true,
+)
 class RippleOceanServicesFeaturesResultsListResponseItem {
-  
-  String id = null;
-  
-  String name = null;
-  RippleOceanServicesFeaturesResultsListResponseItem();
+  /// Returns a new [RippleOceanServicesFeaturesResultsListResponseItem] instance.
+  RippleOceanServicesFeaturesResultsListResponseItem({
+    this.id,
+    this.name,
+  });
+
+  @JsonKey(
+    nullable: false,
+    name: r'id',
+    required: false,
+  )
+  String id;
+
+  @JsonKey(
+    nullable: true,
+    name: r'name',
+    required: false,
+  )
+  String name;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is RippleOceanServicesFeaturesResultsListResponseItem &&
+     other.id == id &&
+     other.name == name;
+
+  @override
+  int get hashCode =>
+    (id == null ? 0 : id.hashCode) +
+    (name == null ? 0 : name.hashCode);
+
+  factory RippleOceanServicesFeaturesResultsListResponseItem.fromJson(Map<String, dynamic> json) => _$RippleOceanServicesFeaturesResultsListResponseItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RippleOceanServicesFeaturesResultsListResponseItemToJson(this);
 
   @override
   String toString() {
-    return 'RippleOceanServicesFeaturesResultsListResponseItem[id=$id, name=$name, ]';
+    return toJson().toString();
   }
 
-  RippleOceanServicesFeaturesResultsListResponseItem.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    Map <String, dynamic> json = {};
-    if (id != null)
-      json['id'] = id;
-      json['name'] = name;
-    return json;
-  }
-
-  static List<RippleOceanServicesFeaturesResultsListResponseItem> listFromJson(List<dynamic> json) {
-    return json == null ? List<RippleOceanServicesFeaturesResultsListResponseItem>() : json.map((value) => RippleOceanServicesFeaturesResultsListResponseItem.fromJson(value)).toList();
-  }
-
-  static Map<String, RippleOceanServicesFeaturesResultsListResponseItem> mapFromJson(Map<String, dynamic> json) {
-    var map = Map<String, RippleOceanServicesFeaturesResultsListResponseItem>();
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic value) => map[key] = RippleOceanServicesFeaturesResultsListResponseItem.fromJson(value));
-    }
-    return map;
-  }
-
-  // maps a json object with a list of RippleOceanServicesFeaturesResultsListResponseItem-objects as value to a dart map
-  static Map<String, List<RippleOceanServicesFeaturesResultsListResponseItem>> mapListFromJson(Map<String, dynamic> json) {
-    var map = Map<String, List<RippleOceanServicesFeaturesResultsListResponseItem>>();
-     if (json != null && json.isNotEmpty) {
-       json.forEach((String key, dynamic value) {
-         map[key] = RippleOceanServicesFeaturesResultsListResponseItem.listFromJson(value);
-       });
-     }
-     return map;
-  }
 }
 
